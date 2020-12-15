@@ -6,6 +6,22 @@
     <title>Simple Shop</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .slide-enter-active{
+            animation: slide-down 0.5s;
+        }
+        .slide-leave-active{
+            animation: slide-down .5s reverse;
+        }
+        @keyframes slide-down{
+            0%{
+                transform: translateY(-1000px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -17,8 +33,9 @@
                 <a href="#" class="w3-right w3-button w3-bar-item" @click="displayCart = !displayCart">({{cart.length}}) <i class="fa fa-shopping-cart"></i>  SHOPPING CART</a>
             </div>
 
+            <transition name="slide">
             <!-- cart -->
-            <div class="w3-right w3-border w3-hide w3-animate-top" :class="{ 'w3-show': displayCart }">
+            <div class="w3-right w3-border" v-show="displayCart">
                 <table class="w3-table w3-white">
                     <tr>
                         <th>Product</th>
@@ -43,6 +60,9 @@
                     </tr>
                 </table>
             </div>
+            </transition>
+            
+
         </div>
 
         <!-- content -->
